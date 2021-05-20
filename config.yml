@@ -33,69 +33,78 @@ steps:
 # Step 2: EDIT HERE -INTERNAL COMMENT FOR STEP 2
  - title: Probiere den Template Workflow aus
   description: Warte bis GitHub deinen Workflow ausgeführt hat und die Ergebnisse anzeigt.
-#  event: # the event that will trigger the actions to be executed, full list at https://developer.github.com/v3/activity/events/types/
+  event: check_suite.completed
 #  actions: # a list of the actions that will occur when the step is triggered by an event
 #  - type: # the type of action, full list at https://lab.github.com/docs/actions
 
 # Step 3: EDIT HERE - INTERNAL COMMENT FOR STEP 3
  - title: Füge einen ersten Test hinzu
   description: Füge ein Testscript in den CI Workflow ein
-#  event: # the event that will trigger the actions to be executed, full list at https://developer.github.com/v3/activity/events/types/
+  event: pull_request.synchronize
 #  actions: # a list of the actions that will occur when the step is triggered by an event
 #  - type: # the type of action, full list at https://lab.github.com/docs/actions
 
 # Step 4: EDIT HERE - INTERNAL COMMENT FOR STEP 4
  - title: Finde den Fehler
   description: Finde heraus welcher Test nicht funktioniert, sodass wir ihn fixen können.
-#  event: # the event that will trigger the actions to be executed, full list at https://developer.github.com/v3/activity/events/types/
+  event: issue_comment.created
 #  actions: # a list of the actions that will occur when the step is triggered by an event
 #  - type: # the type of action, full list at https://lab.github.com/docs/actions
 
 # Step 5: EDIT HERE - INTERNAL COMMENT FOR STEP 5
  - title: Fix den Test
   description: Repariere die identifizierte Codestelle.
-#  event: # the event that will trigger the actions to be executed, full list at https://developer.github.com/v3/activity/events/types/
+  event: check_suite.completed
 #  actions: # a list of the actions that will occur when the step is triggered by an event
 #  - type: # the type of action, full list at https://lab.github.com/docs/actions
 
 # Step 6: EDIT HERE - INTERNAL COMMENT FOR STEP 6
  - title: Teile die Ergebnisse mit deinem Team
    description: Merge den PullRequest mit deinem ersten Workflow zurück in den main branch
+   event: pull_request.closed
    
 # Step 7
   - title: Erstelle deinen eigenen Workflow
     description:  Füge deinem Workflow eigene build targets hinzu
+    event: pull_request
     
 # Step 8
   - title: Teste den build step in einer Windows Umgebung
     description: Editiere deinen Workflow, um zusätzlich auf Windows zu bauen.
+    event: pull_request.sychronize
     
 # Step 9
 # 1. Learner creates a new job, moves `npm test` down to that job
   - title: Benutze mehrere Jobs in deinem Workflow
     description: Editiere deinen Workflow um einen separaten build und test Job zu erhalten.
+    event: pull_request.synchronize
     
 # Step 10
 # 1. GitHub sends a failed `check_run` (we don't have build artifacts in the second job)
 # 1. Bot explains what happens to a job's artifacts, and that they need to be saved, asks learner to upload the artifacts in the build job
   - title: Führe deinen Workflow mit mehreren Jobs aus
     description: Warte auf das Ergebnis deines Multi-Job Workflows
+    event: check_suite.completed
+
   
 # Step 11
 # 1. Learner uses the [`actions/upload-artifacts`](https://github.com/actions/upload-artifact) in the build job
 # 1. Bot asks learner to now download the artifacts in the test job
   - title: Speichere die Build Artefakte aus deinem Job im "Shared Storage for Actions and Packages"
     description: Benutze die "upload action" in deinem Workflow, um die Build Artefakte eines Jobs zu speichern
+    event: pull_request.synchronize
     
   
 # Step 12
 # 1. Learner commits [`actions/download-artifacts`](https://github.com/actions/download-artifact) to the test job
   - title: Download Build Artefakte in einem Job
     description: Benutze die Download Action um die Artefakte des vorherige Jobs herunter zu laden
+    event: pull_request.synchronize
     
 # Step 13
   - title: Teile deinen verbesserten CI Workflow mit deinem Team
     description: Merge den Pull Request in deinen Workflow
+    event: pull_request.closed
     
 # Step 14
 # 1. GitHub sends a successful `check_run`
@@ -104,6 +113,7 @@ steps:
 # 1. Bot asks the learner to choose an event, explains how those events trigger the workflow
   - title: Automatisiere deinen Review Prozess
     description: Füge einen neuen Workflow hinzu, um den Reviewprozess deines Teams zu automatisieren
+    event: pull_request.synchronize
     
     
 # Step 15
@@ -111,12 +121,14 @@ steps:
 # 1. Bot asks learner to add a job with their own title, explains what that does
   - title: Benutze Actions um Pull Request Reviews zu automatisieren
     description: Integriere eine Community Action in deinen Workflow
+    event: pull_request.synchronize
     
 # Step 16
 # 1. Learner adds a job
 # 1. Bot asks learner to choose a virtual environment, bot explains environment options and why we'd like to pick a specific one
   - title: Erzeuge einen "PR Approval" Job in dem neuen Workflow
     description: Erzeeuge einen neuen Job, den wir für das Pull Request Approval verwenden können.
+    event: pull_request.synchronize
     
 # Step 17
 # 1. Learner commits the `runs-on` and chooses an environment
@@ -125,6 +137,9 @@ steps:
 # 1. Bot points out that branch protections aren't currently in place, asks learner to set branch protections, and approve the PR
   - title: Automatisierte Approvals
     description: Benutze die Communitiy Action um Teile des Review Prozesses zu automatisieren.
+    event:
+      - pull_request.synchronize
+      - issue_comment.created
    
 
 # Step 18
@@ -136,3 +151,7 @@ steps:
 # 1. Bot turns on pages build, drops link in the PR, explains to the learner the value on a workflow that enforces team behaviors.
   - title: Branch Protections
     description: Da wir nun einen automatisierten Prozess für unsere PullRequests haben, können wir den main Branch schützen.
+    event:
+      - pull_request_review.submitted
+      - pull_request.labeled
+      
