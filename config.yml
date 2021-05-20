@@ -58,3 +58,81 @@ steps:
 #  actions: # a list of the actions that will occur when the step is triggered by an event
 #  - type: # the type of action, full list at https://lab.github.com/docs/actions
 
+# Step 6: EDIT HERE - INTERNAL COMMENT FOR STEP 6
+ - title: Teile die Ergebnisse mit deinem Team
+   description: Merge den PullRequest mit deinem ersten Workflow zurück in den main branch
+   
+# Step 7
+  - title: Erstelle deinen eigenen Workflow
+    description:  Füge deinem Workflow eigene build targets hinzu
+    
+# Step 8
+  - title: Teste den build step in einer Windows Umgebung
+    description: Editiere deinen Workflow, um zusätzlich auf Windows zu bauen.
+    
+# Step 9
+# 1. Learner creates a new job, moves `npm test` down to that job
+  - title: Benutze mehrere Jobs in deinem Workflow
+    description: Editiere deinen Workflow um einen separaten build und test Job zu erhalten.
+    
+# Step 10
+# 1. GitHub sends a failed `check_run` (we don't have build artifacts in the second job)
+# 1. Bot explains what happens to a job's artifacts, and that they need to be saved, asks learner to upload the artifacts in the build job
+  - title: Führe deinen Workflow mit mehreren Jobs aus
+    description: Warte auf das Ergebnis deines Multi-Job Workflows
+  
+# Step 11
+# 1. Learner uses the [`actions/upload-artifacts`](https://github.com/actions/upload-artifact) in the build job
+# 1. Bot asks learner to now download the artifacts in the test job
+  - title: Speichere die Build Artefakte aus deinem Job im "Shared Storage for Actions and Packages"
+    description: Benutze die "upload action" in deinem Workflow, um die Build Artefakte eines Jobs zu speichern
+    
+  
+# Step 12
+# 1. Learner commits [`actions/download-artifacts`](https://github.com/actions/download-artifact) to the test job
+  - title: Download Build Artefakte in einem Job
+    description: Benutze die Download Action um die Artefakte des vorherige Jobs herunter zu laden
+    
+# Step 13
+  - title: Teile deinen verbesserten CI Workflow mit deinem Team
+    description: Merge den Pull Request in deinen Workflow
+    
+# Step 14
+# 1. GitHub sends a successful `check_run`
+# 1. Bot says we're now going to automate review approvals, asks learner to create a new workflow in the PR now and to add a blank step to the workflow for approval automation.
+# 1. Learner commits a new, mostly blank, workflow file, chooses a name for the workflow
+# 1. Bot asks the learner to choose an event, explains how those events trigger the workflow
+  - title: Automatisiere deinen Review Prozess
+    description: Füge einen neuen Workflow hinzu, um den Reviewprozess deines Teams zu automatisieren
+    
+    
+# Step 15
+# 1. Learner adds the `pull_request_review` event to the workflow file.
+# 1. Bot asks learner to add a job with their own title, explains what that does
+  - title: Benutze Actions um Pull Request Reviews zu automatisieren
+    description: Integriere eine Community Action in deinen Workflow
+    
+# Step 16
+# 1. Learner adds a job
+# 1. Bot asks learner to choose a virtual environment, bot explains environment options and why we'd like to pick a specific one
+  - title: Erzeuge einen "PR Approval" Job in dem neuen Workflow
+    description: Erzeeuge einen neuen Job, den wir für das Pull Request Approval verwenden können.
+    
+# Step 17
+# 1. Learner commits the `runs-on` and chooses an environment
+# 1. Bot asks learner to create a step for approval automation, using the [`pullreminders/label-when-approved-action` action](https://github.com/pullreminders/label-when-approved-action)
+# 1. Bot removes branch protections
+# 1. Bot points out that branch protections aren't currently in place, asks learner to set branch protections, and approve the PR
+  - title: Automatisierte Approvals
+    description: Benutze die Communitiy Action um Teile des Review Prozesses zu automatisieren.
+   
+
+# Step 18
+# 1. Learner sets branch protection and approves the PR
+# 1. Action runs and applies a label
+# 1. Bot checks that branch protections are in place, asks the learner to fix it if not. Learner may have to re-approve.
+# 1. Bot comments that this action can be used to automatically deploy changes.
+# 1. Bot merges PR.
+# 1. Bot turns on pages build, drops link in the PR, explains to the learner the value on a workflow that enforces team behaviors.
+  - title: Branch Protections
+    description: Da wir nun einen automatisierten Prozess für unsere PullRequests haben, können wir den main Branch schützen.
