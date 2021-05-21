@@ -26,13 +26,18 @@ steps:
 - title: starter-workflows: Ein guter Anfang
   description: Erstelle einen PullRequest auss einem Template Workflow
   event: pull_request  
-  actions: # a list of the actions that will occur when the step is triggered by an event
-  - type: # the type of action, full list at https://lab.github.com/docs/actions
-
+  link: "{{ store.first_issue_url }}"
+  actions:
+  - type: gate
+    left: "%payload.action%"
+    operator: ===
+    right: opened
+         
 # Step 2: EDIT HERE -INTERNAL COMMENT FOR STEP 2
  - title: Probiere den Template Workflow aus
   description: Warte bis GitHub deinen Workflow ausgeführt hat und die Ergebnisse anzeigt.
   event: check_suite.completed
+  
 #  actions: # a list of the actions that will occur when the step is triggered by an event
 #  - type: # the type of action, full list at https://lab.github.com/docs/actions
 
