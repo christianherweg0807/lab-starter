@@ -1,6 +1,6 @@
-title: # a name for your Learning Lab course
-tagline: # a short description for your Learning Lab course, displayed on the course catalog
-description: # a longer description for your Learning Lab course, displayed on the course's landing page
+title: "GitHub Actions for Continuous Integration (CI)" 
+tagline: "Eine kurze Einführung in Github Actions"
+description: "In diesem Kurs bekommt ihr einen kurzen Einblick, wie man eigene Continuous Integration (CI) Workflows mit GitHub Actions baut, um Code direkt nach dem Change zu testen und zu deployen. Direktes Feeback und kleine Changes helfen Fehler schneller zu finden und somit Zeit zu sparen."
 
 # Repository setup
 # The following section template information for the repository
