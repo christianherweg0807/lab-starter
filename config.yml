@@ -32,21 +32,10 @@ steps:
     left: "%payload.action%"
     operator: ===
     right: opened
-  - type: gate
-    left: "%payload.pull_request.title%"
-    operator: ===
-    right: CI for Node
-    else:
-      - type: respond
-        with: 01_nice-work.md
-        data:
-          title: CI for Node
-     store:
-       ci_for_node_pr: "{{ payload.pull_request.number }}"
-   - type: respond
-     with: 01_nice-work.md
-     data:
-       actionsUrl: "%payload.repository.html_url%/actions"
+  - type: respond
+    with: 01_nice-work.md
+    data:
+      actionsUrl: "%payload.repository.html_url%/actions"
          
 # Step 2: EDIT HERE -INTERNAL COMMENT FOR STEP 2
  - title: Probiere den Template Workflow aus
