@@ -23,7 +23,7 @@ before:
 
 steps:
 # Step 1: EDIT HERE - INTERNAL COMMENT DESCRIBING STEP 
-  - title: starter-workflows: Ein guter Anfang
+  - title: "starter-workflows: Ein guter Anfang"
     description: Erstelle einen PullRequest auss einem Template Workflow
     event: pull_request  
     link: "{{ store.first_issue_url }}"
@@ -39,8 +39,8 @@ steps:
            
   # Step 2: EDIT HERE -INTERNAL COMMENT FOR STEP 2
   - title: Probiere den Template Workflow aus
-  description: Warte bis GitHub deinen Workflow ausgeführt hat und die Ergebnisse anzeigt.
-  event: check_suite.completed
+    description: Warte bis GitHub deinen Workflow ausgeführt hat und die Ergebnisse anzeigt.
+    event: check_suite.completed
 
   #  actions: # a list of the actions that will occur when the step is triggered by an event
   #  - type: # the type of action, full list at https://lab.github.com/docs/actions
