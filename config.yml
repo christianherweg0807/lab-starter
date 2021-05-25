@@ -28,14 +28,14 @@ steps:
     event: pull_request  
     link: "{{ store.first_issue_url }}"
     actions:
-    - type: gate
-      left: "%payload.action%"
-      operator: ===
-      right: opened
-    - type: respond
-      with: 01_nice-work.md
-      data:
-        actionsUrl: "%payload.repository.html_url%/actions"
+      - type: gate
+        left: "%payload.action%"
+        operator: ===
+        right: opened
+      - type: respond
+        with: 01_nice-work.md
+        data:
+         actionsUrl: "%payload.repository.html_url%/actions"
            
   # Step 2: EDIT HERE -INTERNAL COMMENT FOR STEP 2
   - title: Probiere den Template Workflow aus
@@ -47,29 +47,29 @@ steps:
 
   # Step 3: EDIT HERE - INTERNAL COMMENT FOR STEP 3
   - title: Füge einen ersten Test hinzu
-  description: Füge ein Testscript in den CI Workflow ein
-  event: pull_request.synchronize
+    description: Füge ein Testscript in den CI Workflow ein
+    event: pull_request.synchronize
   #  actions: # a list of the actions that will occur when the step is triggered by an event
   #  - type: # the type of action, full list at https://lab.github.com/docs/actions
 
   # Step 4: EDIT HERE - INTERNAL COMMENT FOR STEP 4
   - title: Finde den Fehler
-  description: Finde heraus welcher Test nicht funktioniert, sodass wir ihn fixen können.
-  event: issue_comment.created
+    description: Finde heraus welcher Test nicht funktioniert, sodass wir ihn fixen können.
+    event: issue_comment.created
   #  actions: # a list of the actions that will occur when the step is triggered by an event
   #  - type: # the type of action, full list at https://lab.github.com/docs/actions
 
   # Step 5: EDIT HERE - INTERNAL COMMENT FOR STEP 5
   - title: Fix den Test
-  description: Repariere die identifizierte Codestelle.
-  event: check_suite.completed
+    description: Repariere die identifizierte Codestelle.
+    event: check_suite.completed
   #  actions: # a list of the actions that will occur when the step is triggered by an event
   #  - type: # the type of action, full list at https://lab.github.com/docs/actions
 
   # Step 6: EDIT HERE - INTERNAL COMMENT FOR STEP 6
   - title: Teile die Ergebnisse mit deinem Team
-   description: Merge den PullRequest mit deinem ersten Workflow zurück in den main branch
-   event: pull_request.closed
+    description: Merge den PullRequest mit deinem ersten Workflow zurück in den main branch
+    event: pull_request.closed
    
 # Step 7
   - title: Erstelle deinen eigenen Workflow
