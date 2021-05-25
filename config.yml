@@ -73,7 +73,7 @@ steps:
    
 # Step 7
   - title: Erstelle deinen eigenen Workflow
-    description:  Füge deinem Workflow eigene build targets hinzu
+    description: Füge deinem Workflow eigene build targets hinzu
     event: pull_request
     link: "{{ store.workflow_issue_url }}"
     
