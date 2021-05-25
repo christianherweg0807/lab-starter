@@ -75,6 +75,7 @@ steps:
   - title: Erstelle deinen eigenen Workflow
     description:  Füge deinem Workflow eigene build targets hinzu
     event: pull_request
+    link: "{{ store.workflow_issue_url }}"
     
 # Step 8
   - title: Teste den build step in einer Windows Umgebung
